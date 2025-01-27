@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
+    "target": "ES2021",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2021", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
 
+    "paths": {
+      "~/*": ["./src/*"],
+      "base/*": ["./src/base/*"],
+      "app/*": ["./src/app/*"],
+      "assets/*": ["./src/assets/*"],
+      "store/*": ["./src/app/store/*"]
+    },
+
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
