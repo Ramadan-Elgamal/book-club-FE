@@ -6,11 +6,7 @@ const config = {
     navbar: {
       display: true,
       folded: true,
-      position: "left",
-    },
-    toolbar: {
-      display: true,
-      style: "fixed",
+      position: "",
     },
     footer: {
       display: true,
