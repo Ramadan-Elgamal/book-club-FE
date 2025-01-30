@@ -330,8 +330,11 @@ export default {
     },
     extend: {
       backgroundImage: {
-        home: "url('/src/assets/imgs/home.png')",
+        home: "url('/src/assets/imgs/Rectangle.png')",
       },
+      // backgroundSize: {
+      //   home: "90%",
+      // },
       aspectRatio: {},
     },
   },

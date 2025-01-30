@@ -4,9 +4,10 @@ import settingsConfig from "./settingsConfig";
 // import AuthConfig from "app/pages/auth/AuthConfig";
 
 import HomeConfig from "../pages/HomeConfig";
+import AuthConfig from "../pages/auth/AuthConfig";
 
 // Important note: Make sure that ErrorsConfig is the last item in the routesConfig always
-const routeConfigs: PageConfig[] = [HomeConfig];
+const routeConfigs: PageConfig[] = [HomeConfig, AuthConfig];
 
 const routes: RouteConfig[] = [
   ...CoreUtils.generateRoutesFromConfigs(

@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { PageConfig } from "base/types";
 
+// const LandingPage = lazy(() => import("./LandingPage"));
 const HomePage = lazy(() => import("./client/home/HomePage"));
 
 const HomeConfig: PageConfig = {
@@ -9,13 +10,13 @@ const HomeConfig: PageConfig = {
       style: "Client",
       config: {
         navbar: {
-          display: false,
+          display: true,
         },
         toolbar: {
-          display: false,
+          display: true,
         },
         footer: {
-          display: false,
+          display: true,
         },
       },
     },

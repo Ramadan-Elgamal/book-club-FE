@@ -1,13 +1,10 @@
-import AuthLayout from "../components/AuthLayout";
-import logo from "assets/imgs/logo.svg";
-// import SignupForm from "../components/SignupForm";
-import { FormType } from "../enum";
+import SignupForm from "../components/SignupForm";
 
 export default function SignupPage() {
   return (
-    <AuthLayout image={logo} type={FormType.SIGNUP}>
-      {/* <SignupForm /> */}
-      <div></div>
-    </AuthLayout>
+    // <AuthLayout image={logo} type={FormType.SIGNUP}>
+    <SignupForm />
+
+    // </AuthLayout>
   );
 }
