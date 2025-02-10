@@ -327,14 +327,15 @@ export default {
     fontFamily: {
       // acumin: ["acumin-variable", 'system-ui', "sans-serif"],
       acumin: "acumin-variable,sans-serif",
+      serif: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif ",
     },
     extend: {
       backgroundImage: {
         home: "url('/src/assets/imgs/Rectangle.png')",
+        vector_x: "url('/src/assets/imgs/VectorRight.png')",
+        vector_y: "url('/src/assets/imgs/VectorLeft.png')",
       },
-      // backgroundSize: {
-      //   home: "90%",
-      // },
+
       aspectRatio: {},
     },
   },
