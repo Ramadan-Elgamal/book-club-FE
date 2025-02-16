@@ -8,13 +8,13 @@ interface AuthFormProps {
 }
 const AuthForm = ({isSigninOrUp}: AuthFormProps) => {
   const navigate = useNavigate()
-  return <div className='w-1/2 h-full px-32 flex flex-col items-center justify-center gap-5'>
+  return <div className='w-1/2 h-screen px-28 py-4 flex flex-col items-center justify-center gap-5'>
 
     <Text className='text-center'>Welcome to Circels!</Text>
 
-    <div className="bg-[#EAD0A880] w-2/3 flex justify-between rounded-full px-2 py-1 ">
-      <Button variant= {isSigninOrUp === "up" ? "filled" : "transparent"} color= "#402905" w={85} radius="xl" onClick={() => navigate('/sign-up')}>Register</Button>
-      <Button variant= {isSigninOrUp === "in" ? "filled" : "transparent"} color="#402905" w={85} radius="xl" onClick={() => navigate('/sign-in')}>Login</Button>
+    <div className="bg-[#EAD0A880] w-[250px] flex justify-between rounded-full px-[8px] py-[5px] ">
+      <Button variant= {isSigninOrUp === "up" ? "filled" : "transparent"} color= "#402905" w={120} radius="xl" onClick={() => navigate('/sign-up')}>Register</Button>
+      <Button variant= {isSigninOrUp === "in" ? "filled" : "transparent"} color="#402905" w={120} radius="xl" onClick={() => navigate('/sign-in')}>Login</Button>
     </div>
 
     <TextInput
@@ -22,7 +22,6 @@ const AuthForm = ({isSigninOrUp}: AuthFormProps) => {
       description=""
       error=""
       size="md"
-      className="bg-white"
       radius="xl"
       placeholder="enter your email address"
     />
@@ -43,19 +42,19 @@ const AuthForm = ({isSigninOrUp}: AuthFormProps) => {
       label="Password"
       description=""
       error=""
-      size="md"
+      size='md'
       radius="xl"
       placeholder="enter your password"
     />  
 
     <div className="w-3/4 flex items-center justify-center relative py-2">
       <div className="w-full h-[1px] bg-base"></div>
-      <p className="text-large absolute text-black bg-white">OR</p>
+      <p className="text-large absolute text-black">OR</p>
     </div>
 
-    <GoogleButton w={275} h={50}>Sign up with Google</GoogleButton>
+    <GoogleButton w={235} h={50}>Sign up with Google</GoogleButton>
 
-    <FacebookButton w={275} h={50}>Sign up with Facebook</FacebookButton>
+    <FacebookButton w={235} h={50}>Sign up with Facebook</FacebookButton>
     {isSigninOrUp === "up" &&
     <Checkbox label="By signing up , you accept our terms of use and acknowledge our privacy policy"
     />}
