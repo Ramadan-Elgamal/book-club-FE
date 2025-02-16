@@ -8,9 +8,9 @@ import login from "~/assets/imgs/login.png";
 export default function LoginPage() {
   return (
     // <AuthLayout image={""} type={FormType.SIGNIN}>
-    <div className="relative w-full mx-auto max-h-[100vh] px-32 flex justify-between">
+    <div className="relative w-full mx-auto max-h-[100vh] px-28 flex justify-between">
     <BackgroundShapes/>
-    <div className=" w-1/2 p-8 flex justify-center">
+    <div className=" w-1/2 p-6 flex justify-center">
       <Image src={login} className="!rounded-2xl" alt="register-image" fit="cover"/>
     </div>
     <AuthForm isSigninOrUp="in"/>

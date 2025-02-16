@@ -30,10 +30,10 @@ const BackgroundShapes: React.FC = () => {
           position: 'absolute',
           bottom: '-5%',
           right: '0%',
-          width: '550px',
-          height: '550px',
+          width: '500px',
+          height: '500px',
           borderRadius: '50%',
-          backgroundColor: '#f472b6 ',
+          backgroundColor: '#ffb6c1 ',
           filter: 'blur(200px)',
         }}
       />

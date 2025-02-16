@@ -8,7 +8,7 @@ interface AuthFormProps {
 }
 const AuthForm = ({isSigninOrUp}: AuthFormProps) => {
   const navigate = useNavigate()
-  return <div className='w-1/2 h-screen px-28 py-4 flex flex-col items-center justify-center gap-5'>
+  return <div className='w-1/2 h-screen px-24 py-4 flex flex-col items-center justify-center gap-5'>
 
     <Text className='text-center'>Welcome to Circels!</Text>
 
@@ -67,7 +67,7 @@ const AuthForm = ({isSigninOrUp}: AuthFormProps) => {
     }
 
    
-   <Button color="#402905" fullWidth>{isSigninOrUp === "up" ? "Register" : "Login"}</Button> 
+   <Button size='lg' className='!rounded-[50px]' color="#402905" fullWidth>{isSigninOrUp === "up" ? "Register" : "Login"}</Button> 
   </div>;
 };
 
