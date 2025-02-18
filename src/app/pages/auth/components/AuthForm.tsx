@@ -48,7 +48,8 @@ const AuthForm = ({isSigninOrUp}: AuthFormProps) => {
     />  
 
     <div className="w-3/4 flex items-center justify-center relative py-2">
-      <div className="w-full h-[1px] bg-base"></div>
+      <div className="w-full h-[1px] font
+       bg-base"></div>
       <p className="text-large absolute text-black">OR</p>
     </div>
 
