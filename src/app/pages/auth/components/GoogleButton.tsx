@@ -1,12 +1,14 @@
+/* eslint-disable no-console */
 import { Button, ButtonProps } from "@mantine/core";
+import { useGoogleLogin } from "@react-oauth/google";
 
-export function GoogleIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function GoogleIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 262"
-      style={{ width: 20, height: 20 }}
+      style={{ width: 30, height: 30, marginRight: 10 }}
       {...props}
     >
       <path
@@ -29,6 +31,19 @@ export function GoogleIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   );
 }
 
-export function GoogleButton(props: ButtonProps & React.ComponentPropsWithoutRef<'button'>) {
-    return <Button leftSection={<GoogleIcon />} variant="transparent" {...props} />;
-  }
+export function GoogleButton(
+  props: ButtonProps & React.ComponentPropsWithoutRef<"button">,
+) {
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => console.log(tokenResponse),
+  });
+  return (
+    <Button
+      leftSection={<GoogleIcon />}
+      onClick={() => login()}
+      variant="transparent"
+      className="!border-[#9E896A] !text-[#9E896A]"
+      {...props}
+    />
+  );
+}

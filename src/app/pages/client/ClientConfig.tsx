@@ -12,7 +12,7 @@ const ClientConfig: PageConfig = {
           display: true,
         },
         toolbar: {
-          display: true,
+          display: false,
         },
         footer: {
           display: true,

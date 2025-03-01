@@ -8,6 +8,10 @@ const config = {
       folded: true,
       position: "",
     },
+    toolbar: {
+      display: false,
+      style: "fixed",
+    },
     footer: {
       display: true,
       style: "fixed",

@@ -28,7 +28,15 @@ const Layout = () => {
       {config.navbar.display && <Navbar />}
 
       <AppShell.Main>
-        <Suspense fallback={<Loader />}>{useRoutes(routes)}</Suspense>
+        <Suspense
+          fallback={
+            <div className="flex h-screen w-screen items-center justify-center">
+              <Loader />
+            </div>
+          }
+        >
+          {useRoutes(routes)}
+        </Suspense>
       </AppShell.Main>
       {config.footer.display && <Footer />}
     </AppShell>

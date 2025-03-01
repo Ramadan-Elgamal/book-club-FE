@@ -12,6 +12,7 @@ import routes from "./configs/routesConfig";
 import AppLayouts from "./layouts";
 import store from "./store";
 import { theme } from "./theme";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
   const contextValue = useMemo(() => ({ routes }), []);
@@ -22,10 +23,12 @@ function App() {
           <ModalsProvider>
             <BrowserRouter>
               <AuthProvider>
-                <Authorization>
-                  <Notifications zIndex={999999} />
-                  <AppLayout layouts={AppLayouts} />
-                </Authorization>
+                <GoogleOAuthProvider clientId="<your_client_id>">
+                  <Authorization>
+                    <Notifications zIndex={999999} />
+                    <AppLayout layouts={AppLayouts} />
+                  </Authorization>
+                </GoogleOAuthProvider>
               </AuthProvider>
             </BrowserRouter>
           </ModalsProvider>
