@@ -1,41 +1,111 @@
-import { Button, Checkbox, Input, PasswordInput} from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
-import { GoogleButton } from './GoogleButton';
-import { FacebookButton } from './FacebookButton';
+import {
+  Text,
+  Button,
+  Checkbox,
+  TextInput,
+  Anchor,
+  PasswordInput,
+} from "@mantine/core";
+import { useNavigate } from "react-router-dom";
+import { GoogleButton } from "./GoogleButton";
+import { FacebookButton } from "./FacebookButton";
 
-const SigninForm = () => {
-  const navigate = useNavigate()
-  return <div>
-    <p className='text-center'>Welcome Back!</p>
-    <div className="buttons bg-[#EAD0A880] flex justify-between rounded-full px-6 py-4 gap-10">
-    <Button variant="white" color="black" size='md' radius="xl" onClick={() => navigate('/sign-up')}>Register</Button>
-    <Button variant="filled" color="#402905" size='md' radius="xl" >Login</Button>
+interface AuthFormProps {
+  isSigninOrUp: "in" | "up";
+}
+const AuthForm = ({ isSigninOrUp }: AuthFormProps) => {
+  const navigate = useNavigate();
+  return (
+    <div className="flex h-screen w-1/2 flex-col items-center justify-center gap-5 px-24 py-4">
+      <Text className="text-center">Welcome to Circels!</Text>
+
+      <div className="flex w-[250px] justify-between rounded-full bg-[#EAD0A880] px-[8px] py-[5px]">
+        <Button
+          variant={isSigninOrUp === "up" ? "filled" : "transparent"}
+          color="#402905"
+          w={120}
+          radius="xl"
+          onClick={() => navigate("/sign-up")}
+        >
+          Register
+        </Button>
+        <Button
+          variant={isSigninOrUp === "in" ? "filled" : "transparent"}
+          color="#402905"
+          w={120}
+          radius="xl"
+          onClick={() => navigate("/sign-in")}
+        >
+          Login
+        </Button>
+      </div>
+
+      {/* <TextInput
+        label="Email Address"
+        description=""
+        error=""
+        size="md"
+        radius="xl"
+        placeholder="enter your email address"
+      /> */}
+      <TextInput
+        label="Email Address"
+        size="lg"
+        radius="xl"
+        className="w-full"
+        placeholder="Enter your Email Address"
+        classNames={{
+          input: "!border-[#9E896A] ",
+          label: "!text-[#402905]",
+          required: "!text-red",
+        }}
+      />
+
+      <PasswordInput
+        radius={"xl"}
+        label="Password"
+        placeholder="Enter your password"
+        size="lg"
+        className="w-full"
+        classNames={{
+          input: "!border-[#9E896A] ",
+          label: "!text-[#402905]",
+          required: "!text-red",
+        }}
+      />
+
+      <div className="flex items-center justify-center gap-4">
+        <div className="w-[200px] flex-1 border-t border-[#1C345442]"></div>
+        <span className="text-[15px] font-normal text-primary-900">OR</span>
+        <div className="w-[200px] flex-1 border-t border-[#1C345442]"></div>
+      </div>
+
+      <GoogleButton w={235} h={50}>
+        Sign up with Google
+      </GoogleButton>
+
+      <FacebookButton w={235} h={50}>
+        Sign up with Facebook
+      </FacebookButton>
+
+      <div className="flex w-full items-center justify-between">
+        <Checkbox
+          label="Remember me"
+          color="#402905"
+          classNames={{
+            label: "!text-[#4A4A4A] text-[15px] font-normal text-center",
+          }}
+        />
+        <Anchor href="#" className="!text-[#4A4A4A]">
+          Forgot Password?
+        </Anchor>
+      </div>
+
+      <Button size="lg" className="!rounded-[50px]" color="#402905" fullWidth>
+        Login
+      </Button>
     </div>
-
-    <Input.Wrapper label="Email Address" description="" error="" size="md">
-      <Input className="bg-white" radius='xl' placeholder="enter your email address" />
-    </Input.Wrapper>
-    
-    <PasswordInput
-      label="Password"
-      radius="lg"
-      placeholder="Enter your password"
-    />
-
-    <hr /> <p className='text-center'>OR</p> <hr />
-
-    <GoogleButton>Sign up with Google</GoogleButton>
-    <br />
-    <FacebookButton>Sign up with Facebook</FacebookButton>
-    
-    <div className="forget-password flex justify-between">
-    <Checkbox
-      label="Remember me"
-    />
-    <a href="">Forger Password</a>
-    </div>
-   <Button fullWidth>Login</Button> 
-  </div>;
+  );
 };
 
-export default SigninForm;
+export default AuthForm;

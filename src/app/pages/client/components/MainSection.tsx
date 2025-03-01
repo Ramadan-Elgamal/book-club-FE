@@ -14,7 +14,7 @@ const MainSection = () => {
   // const navigate = useNavigate();
   return (
     <>
-      <div className="flex h-[60rem] items-start justify-center gap-40 bg-home bg-contain bg-right-top bg-no-repeat pt-24">
+      <div className="flex h-[60rem] items-start justify-center gap-40 bg-home bg-contain bg-right-top bg-no-repeat pt-40">
         <div className="flex w-1/2 flex-col items-center justify-center gap-14">
           <Image src={header} alt="header" w={600} />
           <p className="w-[85%] text-center text-2xl font-semibold text-[#402905]">

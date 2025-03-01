@@ -20,3 +20,7 @@ body {
   height: 100vh;
   font-family: "acumin-variable", sans-serif;
 }
+
+.mantine-AppShell-main {
+  padding: unset !important;
+}

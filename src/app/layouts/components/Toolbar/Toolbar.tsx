@@ -1,6 +1,8 @@
 import { AppShell, Burger, Button, Group, Image } from "@mantine/core";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "~/assets/imgs/logo.png";
+
 const Toolbar = ({
   opened,
   toggle,
@@ -10,8 +12,33 @@ const Toolbar = ({
 }) => {
   const tabs = ["Clubs", "Borrow & Lend", "More"];
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <AppShell.Header withBorder={true} px={20}>
+    <AppShell.Header
+      withBorder={false}
+      px={40}
+      pt={5}
+      className={
+        isScrolled
+          ? "!bg-white"
+          : "!bg-transparent !transition-all !ease-in-out"
+      }
+    >
       <Group h="100%">
         <Group justify="space-between" style={{ flex: 1 }}>
           <Image src={logo} alt="logo" height={40} />

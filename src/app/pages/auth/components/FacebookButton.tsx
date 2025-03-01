@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from "@mantine/core";
 
-export function FacebookIcon(props: React.ComponentProps<'svg'>) {
+export function FacebookIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg
       aria-hidden="true"
@@ -11,7 +11,7 @@ export function FacebookIcon(props: React.ComponentProps<'svg'>) {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
-      style={{ width: 20, height: 20 ,color: "blue"}}
+      style={{ width: 32, height: 32, color: "#0163E0" }}
       {...props}
     >
       <path
@@ -22,6 +22,15 @@ export function FacebookIcon(props: React.ComponentProps<'svg'>) {
   );
 }
 
-export function FacebookButton(props: ButtonProps & React.ComponentPropsWithoutRef<'button'>) {
-    return <Button leftSection={<FacebookIcon />}variant="transparent" {...props} />;
-  }
+export function FacebookButton(
+  props: ButtonProps & React.ComponentPropsWithoutRef<"button">,
+) {
+  return (
+    <Button
+      leftSection={<FacebookIcon />}
+      className="!border-[#9E896A] !text-[#9E896A]"
+      variant="transparent"
+      {...props}
+    />
+  );
+}
