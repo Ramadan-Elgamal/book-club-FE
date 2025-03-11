@@ -6,35 +6,12 @@ import {
   PasswordInput,
   Progress,
   Popover,
-  Box,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-
-import { IconX, IconCheck } from "@tabler/icons-react";
-
 import { useState } from "react";
 import { GoogleButton } from "./GoogleButton";
 import { FacebookButton } from "./FacebookButton";
 
-function PasswordRequirement({
-  meets,
-  label,
-}: {
-  meets: boolean;
-  label: string;
-}) {
-  return (
-    <Text
-      c={meets ? "teal" : "red"}
-      style={{ display: "flex", alignItems: "center" }}
-      mt={7}
-      size="sm"
-    >
-      {meets ? <IconCheck size={14} /> : <IconX size={14} />}
-      <Box ml={10}>{label}</Box>
-    </Text>
-  );
-}
 
 const requirements = [
   { re: /[0-9]/, label: "Includes number" },
@@ -45,42 +22,36 @@ const requirements = [
 
 function getStrength(password: string) {
   let multiplier = password.length > 5 ? 0 : 1;
-
   requirements.forEach((requirement) => {
-    if (!requirement.re.test(password)) {
-      multiplier += 1;
-    }
+    if (!requirement.re.test(password)) multiplier += 1;
   });
-
   return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 10);
 }
+
 interface AuthFormProps {
   isSigninOrUp: "in" | "up";
 }
+
 const AuthForm = ({ isSigninOrUp }: AuthFormProps) => {
   const navigate = useNavigate();
   const [popoverOpened, setPopoverOpened] = useState(false);
-  const [value, setValue] = useState("");
-  const checks = requirements.map((requirement, index) => (
-    <PasswordRequirement
-      key={index}
-      label={requirement.label}
-      meets={requirement.re.test(value)}
-    />
-  ));
+  const [password, setPassword] = useState("");
 
-  const strength = getStrength(value);
+  const strength = getStrength(password);
   const color = strength === 100 ? "teal" : strength > 50 ? "yellow" : "red";
 
   return (
-    <div className="flex h-screen w-1/2 flex-col items-center justify-center gap-5 px-24 py-4">
-      <Text className="text-center">Welcome to Circels!</Text>
+    <div className="flex w-full max-w-sm md:max-w-md flex-col items-center justify-center gap-5 px-4 py-6">
+      <Text className="text-center text-2xl font-semibold">
+        Welcome to Circels!
+      </Text>
 
-      <div className="flex w-[250px] justify-between rounded-full bg-[#EAD0A880] px-[8px] py-[5px]">
+      {/* Toggle Buttons */}
+      <div className="flex w-full max-w-[320px] justify-between rounded-full bg-[#EAD0A880] px-[8px] py-[5px]">
         <Button
           variant={isSigninOrUp === "up" ? "filled" : "transparent"}
           color="#402905"
-          w={120}
+          w="50%"
           radius="xl"
           onClick={() => navigate("/sign-up")}
         >
@@ -89,7 +60,7 @@ const AuthForm = ({ isSigninOrUp }: AuthFormProps) => {
         <Button
           variant={isSigninOrUp === "in" ? "filled" : "transparent"}
           color="#402905"
-          w={120}
+          w="50%"
           radius="xl"
           onClick={() => navigate("/sign-in")}
         >
@@ -97,40 +68,39 @@ const AuthForm = ({ isSigninOrUp }: AuthFormProps) => {
         </Button>
       </div>
 
+      {/* Email Input */}
       <TextInput
         label="Email Address"
         required
-        size="lg"
+        size="md"
         radius="xl"
+        placeholder="Enter your email"
         className="w-full"
-        placeholder="Enter your email address"
         classNames={{
           input: "!border-[#9E896A]",
-          label: "!text-[#402905]",
-          required: "!text-red",
+          label: "!text-[#402905] font-medium",
         }}
       />
 
-      <TextInput
-        label="User Name"
-        size="lg"
-        required
-        radius="xl"
-        className="w-full"
-        placeholder="Enter your name"
-        classNames={{
-          input: "!border-[#9E896A] ",
-          label: "!text-[#402905]",
-          required: "!text-red",
-        }}
-      />
+      
+      {/* Username Input (Signup Only) */}
+      {isSigninOrUp === "up" && (
+        <TextInput
+          label="User Name"
+          size="md"
+          required
+          radius="xl"
+          placeholder="Enter your name"
+          className="w-full"
+          classNames={{
+            input: "!border-[#9E896A]",
+            label: "!text-[#402905] font-medium",
+          }}
+        />
+      )}
 
-      <Popover
-        opened={popoverOpened}
-        position="bottom"
-        width="target"
-        transitionProps={{ transition: "pop" }}
-      >
+      {/* Password Input */}
+      <Popover opened={popoverOpened} position="bottom" width={300}>
         <Popover.Target>
           <div
             onFocusCapture={() => setPopoverOpened(true)}
@@ -139,54 +109,53 @@ const AuthForm = ({ isSigninOrUp }: AuthFormProps) => {
           >
             <PasswordInput
               required
-              radius={"xl"}
+              radius="xl"
               label="Password"
               placeholder="Enter your password"
-              size="lg"
-              value={value}
-              onChange={(event) => setValue(event.currentTarget.value)}
+              size="md"
+              value={password}
+              onChange={(e) => setPassword(e.currentTarget.value)}
               classNames={{
-                input: "!border-[#9E896A] ",
-                label: "!text-[#402905]",
-                required: "!text-red",
+                input: "!border-[#9E896A]",
+                label: "!text-[#402905] font-medium",
               }}
             />
           </div>
         </Popover.Target>
         <Popover.Dropdown>
           <Progress color={color} value={strength} size={5} mb="xs" />
-          <PasswordRequirement
-            label="Includes at least 6 characters"
-            meets={value.length > 5}
-          />
-          {checks}
         </Popover.Dropdown>
       </Popover>
 
-      <div className="flex items-center justify-center gap-4">
-        <div className="w-[200px] flex-1 border-t border-[#1C345442]"></div>
-        <span className="text-[15px] font-normal text-primary-900">OR</span>
-        <div className="w-[200px] flex-1 border-t border-[#1C345442]"></div>
+      {/* Social Login */}
+      <div className="flex flex-col w-full">
+        <GoogleButton w="100%" h={45} radius="xl">
+          Sign up with Google
+        </GoogleButton>
+        
+        {/* Divider (OR) */}
+        <div className="flex w-full items-center gap-4">
+          <div className="flex-1 border-t border-[#1C345442]" />
+          <span className="text-[15px] font-normal text-[#4A4A4A]">OR</span>
+          <div className="flex-1 border-t border-[#1C345442]" />
+        </div>
+
+        <FacebookButton w="100%" h={45} radius="xl">
+          Sign up with Facebook
+        </FacebookButton>
       </div>
 
-      <GoogleButton w={235} h={50}>
-        Sign up with Google
-      </GoogleButton>
+      {/* Terms Checkbox */}
+      {isSigninOrUp === "up" && (
+        <Checkbox
+          label="By signing up, you accept our terms of use and privacy policy"
+          color="#402905"
+        />
+      )}
 
-      <FacebookButton w={235} h={50}>
-        Sign up with Facebook
-      </FacebookButton>
-
-      <Checkbox
-        label="By signing up , you accept our terms of use and acknowledge our privacy policy"
-        color="#402905"
-        classNames={{
-          label: "!text-[#4A4A4A] text-[15px] font-normal text-center",
-        }}
-      />
-
-      <Button size="lg" className="!rounded-full" color="#402905" fullWidth>
-        Register
+      {/* Submit Button */}
+      <Button fullWidth className="!rounded-full" color="#402905" radius="xl">
+        {isSigninOrUp === "up" ? "Register" : "Login"}
       </Button>
     </div>
   );
